@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Prime</title>
+  <style>
+    body { background:#111; color:white; font-family:Arial; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fill,200px); gap:20px; }
+    .card { background:#222; padding:10px; }
+    a { color:white; text-decoration:none; }
+  </style>
+</head>
+<body>
+
+<h1>🎬 My Prime</h1>
+<div class="grid" id="videos"></div>
+
+<script>
+fetch("YOUR_GOOGLE_SHEET_PUBLIC_JSON_LINK")
+  .then(res => res.json())
+  .then(data => {
+    let html = "";
+    data.forEach(video => {
+      html += `
+        <div class="card">
+          <a href="https://abyss.to/embed/${video.id}" target="_blank">
+            ${video.name}
+          </a>
+        </div>
+      `;
+    });
+    document.getElementById("videos").innerHTML = html;
+  });
+</script>
+
+</body>
+</html>
